@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.css";
 import Form from './components/Form';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 
 
@@ -13,6 +14,7 @@ root.render(
   <React.StrictMode>
     <Header />
    <Form />
+   <Footer />
   </React.StrictMode>
 );
 
