@@ -1,40 +1,35 @@
 // import React from "react";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import TextInput from "./TextInput.jsx";
 import Button from "./Button.jsx";
 import Box from "./Box";
 import '../styles/Form.css';
 
-class Form extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        weight: 0,
-        height: 0,
-        bmiClass: " ",
-        bmi: 0,
-      };
-      
-    }
+function Form (){
+  
+    const [weight , setWeight] = useState(0);
+    const [height , setHeight] = useState(0);
+    const [bmiClass , setBmiClass] = useState("");
+    const [bmi , setBmi] = useState(0);
 
-  weightChanged = (weightValue) => {
-    this.setState({ weight: weightValue });
+
+    const weightChanged = (weightValue) => {
+    setWeight( weightValue );
   };
 
-  heightChanged = (heightValue) => {
-    this.setState({ height: heightValue });
+  const heightChanged = (heightValue) => {
+    setHeight( heightValue );
   };
 
-  computeBmi = () => {
- 
-    let bmiValue = (this.state.weight / this.state.height / this.state.height)*10000;
+  const computeBmi = () => {
+    let bmiValue = (weight / height / height)*10000;
     console.log(bmiValue);
-    this.setState({ bmi: bmiValue });
-    let bmiClass = this.getBmi(bmiValue);
-    this.setState({ bmiClass: bmiClass });
+    setBmi( bmiValue );
+    let bmiClass =getBmi(bmiValue);
+    setBmiClass( bmiClass );
   };
 
-  getBmi(bmi) {
+  function getBmi(bmi) {
     if (bmi < 18.5) {
       return "Underweight";
     }
@@ -49,32 +44,32 @@ class Form extends Component {
     }
   }
 
-  render() {
+
     return (
       <div className=" all">
         <div className="inputs d-flex">
           <TextInput
             label="Height"
             placeholder="Enter height in meters"
-            onChange={this.heightChanged}
+            onChange={heightChanged}
           />
           <TextInput
             label="Weight"
             placeholder="Enter weight in kg"
-            onChange={this.weightChanged}
+            onChange={weightChanged}
           />
          </div>
          
         <div className="w-100 d-flex justify-content-center">
-          <Button label="COUNT" onClick={this.computeBmi} />
+          <Button label="COUNT" onClick={computeBmi} />
         </div>
 
         <div className="result m-2">
-          <Box bmi={this.state.bmi} bmiClass={this.state.bmiClass}/>
+          <Box bmi={bmi} bmiClass={bmiClass}/>
         </div>
       </div>
     );
-  }
+  
 }
 
 export default Form;

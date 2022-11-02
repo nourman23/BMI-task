@@ -1,41 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
-class TextInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: 0 };
-    // binding of 'this' in our constructor to our method handleChange is necessary for 'this' to work in handleChange method
-    // this.handleChange = this.handleChange.bind(this);
-  }
+function TextInput (props) {
 
-  // handleChange(event) {
-  //   // console.log(this);
-  //   let inputValue = event.target.value;
-  //   this.setState({ value: inputValue });
-  //   this.props.onChange(inputValue);
-  // }
+const [value,setValue] =useState(0);
 
-  handleChange = (event) => {
-    console.log(this);
+
+ const handleChange = (event) => {
     let inputValue = event.target.value;
-    this.setState({ value: inputValue });
-    this.props.onChange(event.target.value);
+    setValue( inputValue );
+    props.onChange(event.target.value);
   };
 
-  render() {
+  
     return (
       <div className="inputF d-flex flex-column m-4">
-        <label className="text-center">{this.props.label}</label>
+        <label className="text-center">{props.label}</label>
         <input
           type="text"
           className="my-4"
-          placeholder={this.props.placeholder}
-          value={this.state.value}
-          onChange={this.handleChange}
+          placeholder={props.placeholder}
+          value={value}
+          onChange={handleChange}
         />
       </div>
     );
-  }
+  
 }
 
 export default TextInput;

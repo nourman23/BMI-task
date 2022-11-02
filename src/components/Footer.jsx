@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
-class Footer extends Component {
-  state = {};
-  render() {
+function Footer (){
     return (
       <>
         <footer className="bg-dark text-center text-light fixed-bottom ">
@@ -10,7 +8,6 @@ class Footer extends Component {
         </footer>
       </>
     );
-  }
 }
 
 export default Footer;
